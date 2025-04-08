@@ -29,7 +29,8 @@ function LogoOnWall() {
 
 // Surgical Chair Component
 function SurgicalChair() {
-  const gltf = useGLTF("../src/assets/surgical_chair.glb"); // or src path if imported directly
+  const gltf = useGLTF("/models/surgical_chair.glb"); // ✅ CORRECT
+
 
   return (
     <primitive object={gltf.scene} position={[0, 0, 0]} scale={0.8} />
