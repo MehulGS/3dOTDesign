@@ -48,7 +48,7 @@ function SurgicalChair({ position }) {
   React.useEffect(() => {
     gltf.scene.traverse((child) => {
       if (child.isMesh) {
-        child.material = new THREE.MeshStandardMaterial({ color: "#2196f3" }); // Blue
+        child.material = new THREE.MeshStandardMaterial({ color: "#00a63e" }); // Blue
       }
     });
   }, [gltf]);
@@ -64,6 +64,21 @@ function Nurse({ position }) {
     gltf.scene.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshStandardMaterial({ color: "#e91e63" }); // Pink
+      }
+    });
+  }, [gltf]);
+
+  return <primitive object={gltf.scene} position={position} scale={0.8} />;
+}
+
+// Table Component
+function Table({ position }) {
+  const gltf = useGLTF("/models/surgical__instrument_table_collection.glb");
+
+  React.useEffect(() => {
+    gltf.scene.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshStandardMaterial({ color: "#00bcff" }); // Pink
       }
     });
   }, [gltf]);
@@ -96,8 +111,9 @@ export default function LoginForm() {
       {/* Suspense + ErrorBoundary around models */}
       <Suspense fallback={null}>
         <ErrorBoundary FallbackComponent={ModelErrorFallback}>
-          <SurgicalChair position={[0, 0, 0]} />
+          <SurgicalChair position={[0, 0, 0]} color="green" />
           <Nurse position={[-0.3, 1.3, -1]} color="red" />
+          <Table position={[-1.5, 0, -0]} />
         </ErrorBoundary>
       </Suspense>
     </Canvas>
