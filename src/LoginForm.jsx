@@ -22,10 +22,19 @@ function ModelErrorFallback({ error }) {
 // Wall Component
 function Wall({ position, size }) {
   return (
-    <mesh position={position}>
-      <boxGeometry args={size} />
-      <meshStandardMaterial color="#fafafa" />
-    </mesh>
+    <group position={position}>
+      {/* Main white wall */}
+      <mesh>
+        <boxGeometry args={size} />
+        <meshStandardMaterial color="#ffffff" />
+      </mesh>
+
+      {/* Border outline using edges */}
+      <lineSegments>
+        <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(...size)]} />
+        <lineBasicMaterial attach="material" color="black" linewidth={2} />
+      </lineSegments>
+    </group>
   );
 }
 
@@ -96,14 +105,14 @@ export default function LoginForm() {
 
       {/* Floor */}
       <mesh position={[0, -0.1, 0]}>
-        <boxGeometry args={[6.2, 0.2, 6]} />{" "}
+        <boxGeometry args={[6.4, 0.3, 6]} />{" "}
         <meshStandardMaterial color="#000000" />
       </mesh>
 
       {/* Walls */}
-      <Wall position={[0, 2.5, -3]} size={[6, 5, 0.2]} />
-      <Wall position={[-3, 2.5, 0]} size={[0.2, 5, 6]} />
-      <Wall position={[3, 2.5, 0]} size={[0.2, 5, 6]} />
+      <Wall position={[0, 2.5, -3]} size={[6, 5, 0.2]} color="white" />
+      <Wall position={[-3.1, 2.5, 0]} size={[0.2, 5, 6.2]} color="white" />
+      <Wall position={[3.1, 2.5, 0]} size={[0.2, 5, 6.2]} color="white" />
 
       {/* Logo */}
       <LogoOnWall />
