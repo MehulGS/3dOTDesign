@@ -113,7 +113,7 @@ export default function LoginForm() {
         <ErrorBoundary FallbackComponent={ModelErrorFallback}>
           <SurgicalChair position={[0, 0, 0]} color="green" />
           <Nurse position={[-0.3, 1.3, -1]} color="red" />
-          <Table position={[-1.5, 0, -0]} />
+          <Table position={[-1.6, 0, -0]} />
         </ErrorBoundary>
       </Suspense>
     </Canvas>
